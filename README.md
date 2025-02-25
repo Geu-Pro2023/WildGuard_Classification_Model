@@ -12,6 +12,15 @@ Wildlife conservation is critical, and identifying endangered species is essenti
 ### **Dataset**  
 The dataset used in this project is publicly available on Kaggle, titled **"90 Different Animals Image Classification."** It consists of approximately **1,000 images** (**600 images used in this project, with 300 per class**) of various wild animals, categorized into two classes: **Endangered** and **Non-Endangered**. The images are resized to **150x150 pixels** and normalized to the range **[0, 1]**.  
 
+---
+
+### **Model Architecture**
+Here is a diagram illustrating the model architecture of WildGuard Classification:
+
+<img width="864" alt="Image" src="https://github.com/user-attachments/assets/2c098535-5d6e-4a35-a567-9e18e731f90e" />
+
+---
+
 ### **Methodology**  
 
 #### **1. Data Preprocessing**  
@@ -19,15 +28,14 @@ The dataset used in this project is publicly available on Kaggle, titled **"90 D
 - Pixel values are normalized to the range **[0, 1]**.  
 - Data is split into **training, validation, and test sets**.  
 
-#### **2. Model Architecture**  
-##### **CNN Models:**  
+#### **2. CNN Models Used** 
 - **Model 1**: Default CNN (no optimization techniques).  
 - **Model 2**: CNN with L2 Regularization.  
 - **Model 3**: CNN with L2 Regularization, Adam optimizer, and early stopping.  
 - **Model 4**: CNN with L1 Regularization and RMSprop optimizer.  
 - **Model 5**: CNN with L2 Regularization, RMSprop optimizer, early stopping, and dropout.  
 
-##### **Classical ML Models:**  
+##### **Classical ML Models**  
 - **Logistic Regression**: Tuned using GridSearchCV.  
 - **Random Forest**: Tuned using GridSearchCV.  
 
@@ -135,4 +143,4 @@ cd wild-animal-classification
    ```
 
 ## Link to my Demo Video:
-https://youtu.be/fYw_hd9Avn0
+https://drive.google.com/file/d/1hSajZt_YeUTaJQDCb8Ok6zr2No6V5-G0/view?usp=sharing
