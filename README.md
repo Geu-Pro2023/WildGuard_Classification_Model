@@ -46,6 +46,15 @@ The dataset used in this project is publicly available on Kaggle, titled **"90 D
 
 ---
 ## Results
+| Instance                | Optimizer | Regularizer      | Epochs | Early Stopping          | Layers             | Learning Rate | Accuracy | F1-Score | Precision | Recall | Loss |
+|-------------------------|-----------|-----------------|--------|------------------------|--------------------|--------------|----------|----------|-----------|--------|------|
+| 1 (Default CNN)        | Adam      | None            | 20     | No                     | 3 Conv + 2 Dense  | 0.001        | 73%      | 0.73     | 0.74      | 0.74   | 1.54 |
+| 2 (L2 + Adam)         | Adam      | L2 (λ=0.001)    | 20     | No                     | 3 Conv + 2 Dense  | 0.001        | 70%      | 0.70     | 0.70      | 0.70   | 1.14 |
+| 3 (L2 + EarlyStop)    | Adam      | L2 (λ=0.01)     | 5*     | Yes (Patience=4)       | 3 Conv + 2 Dense  | 0.001        | 53%      | 0.36     | 0.53      | 0.53   | 1.41 |
+| 4 (L1 + RMSprop)      | RMSprop   | L1 (λ=0.01)     | 20     | No                     | 3 Conv + 2 Dense  | 0.001        | 53%      | 0.36     | 0.53      | 0.53   | 0.72 |
+| 5 (L2 + Dropout)      | RMSprop   | L2 (λ=0.01)     | 4*     | Yes (Patience=4)       | 3 Conv + 2 Dense  | 0.001        | 48%      | 0.31     | 0.47      | 0.48   | 1.04 |
+
+
 ### Model Performance
 | Model                                      | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
 |--------------------------------------------|----------|-----------|--------|----------|---------|
