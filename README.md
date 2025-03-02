@@ -1,4 +1,4 @@
-# Wild Animal Classification: Endangered vs. Non-Endangered
+# WildGuard Classification Model: Endangered vs. Non-Endangered Wild Animals
 
 ## Project Overview
 The WildGuard Classification Model aims to classify wild animals as endangered or non-endangered using machine learning techniques. This project employs Convolutional Neural Networks (CNNs) and classical machine learning algorithms, such as Logistic Regression and Random Forest, while applying various optimization techniques to enhance model performance, convergence speed, and efficiency.
@@ -6,7 +6,6 @@ It also aims to:
 - Apply optimization techniques like **regularization**, **dropout**, and **early stopping** to improve model performance.
 - Evaluate models using metrics such as **accuracy**, **precision**, **recall**, **F1-score**, and **ROC-AUC**.
 
----
 ## Problem Statement
 Wildlife conservation is critical, and identifying endangered species is essential for implementing effective conservation strategies. This project addresses the challenge of classifying images of wild animals into two categories: endangered and non-endangered. By leveraging machine learning, we aim to automate this classification process, providing a tool to assist conservationists and researchers.
 
@@ -20,7 +19,7 @@ The dataset used in this project is publicly available on Kaggle, titled **"90 D
 - Pixel values are normalized to the range [0, 1].
 - Data is split into training, validation, and test sets.
 
-### 2. Model Architecture
+### Model Architecture
 - **CNN Models**:
   - **Model 1**: Default CNN (no optimization techniques).
   - **Model 2**: CNN with L2 Regularization.
@@ -30,65 +29,69 @@ The dataset used in this project is publicly available on Kaggle, titled **"90 D
 - **Classical ML Models**:
   - **Logistic Regression**: Tuned using GridSearchCV.
   - **Random Forest**: Tuned using GridSearchCV.
-
-### 3. Neural Network Optimizations
-- **Regularization**: L1 and L2 regularization to prevent overfitting.
-- **Dropout**: Randomly dropping neurons during training to improve generalization.
-- **Early Stopping**: Stopping training when validation loss stops improving.
-- **Hyperparameter Tuning**: Using GridSearchCV for classical ML models.
-
-### 4. Evaluation Metrics
-- **Accuracy**: Proportion of correctly classified samples.
-- **Precision**: Proportion of true positives among predicted positives.
-- **Recall**: Proportion of true positives among actual positives.
-- **F1-Score**: Harmonic mean of precision and recall.
-- **ROC-AUC**: Area under the ROC curve.
-
+    
 ---
-## Results
-| Instance                | Optimizer | Regularizer      | Epochs | Early Stopping          | Layers             | Learning Rate | Accuracy | F1-Score | Precision | Recall | Loss |
-|-------------------------|-----------|-----------------|--------|------------------------|--------------------|--------------|----------|----------|-----------|--------|------|
-| 1 (Default CNN)        | Adam      | None            | 20     | No                     | 3 Conv + 2 Dense  | 0.001        | 73%      | 0.73     | 0.74      | 0.74   | 1.54 |
-| 2 (L2 + Adam)         | Adam      | L2 (λ=0.001)    | 20     | No                     | 3 Conv + 2 Dense  | 0.001        | 70%      | 0.70     | 0.70      | 0.70   | 1.14 |
-| 3 (L2 + EarlyStop)    | Adam      | L2 (λ=0.01)     | 5*     | Yes (Patience=4)       | 3 Conv + 2 Dense  | 0.001        | 53%      | 0.36     | 0.53      | 0.53   | 1.41 |
-| 4 (L1 + RMSprop)      | RMSprop   | L1 (λ=0.01)     | 20     | No                     | 3 Conv + 2 Dense  | 0.001        | 53%      | 0.36     | 0.53      | 0.53   | 0.72 |
-| 5 (L2 + Dropout)      | RMSprop   | L2 (λ=0.01)     | 4*     | Yes (Patience=4)       | 3 Conv + 2 Dense  | 0.001        | 48%      | 0.31     | 0.47      | 0.48   | 1.04 |
+## Table: Training Instances with Optimization Techniques and Metrics
+| Instance                | Optimizer | Regularizer      | Epochs | Early Stopping           | Layers                | Learning Rate | Accuracy | F1-Score | Precision | Recall | Loss |
+|-------------------------|-----------|------------------|--------|--------------------------|----------------------|--------------  |----------|----------|-----------|--------|------|
+| 1 (Default CNN)         | Adam      | None             | 20     | No                       | 3 Conv + 2 Dense     | 0.001          | 73%      | 0.73     | 0.74      | 0.74   | 1.54 |
+| 2 (L2 + Adam)           | Adam      | L2 (λ=0.001)     | 20     | No                       | 3 Conv + 2 Dense     | 0.001          | 70%      | 0.70     | 0.70      | 0.70   | 1.14 |
+| 3 (L2 + EarlyStop)      | Adam      | L2 (λ=0.01)      | 5*     | Yes (Patience=4)         | 3 Conv + 2 Dense     | 0.001          | 53%      | 0.36     | 0.53      | 0.53   | 1.41 |
+| 4 (L1 + RMSprop)        | RMSprop   | L1 (λ=0.01)      | 20     | No                       | 3 Conv + 2 Dense     | 0.001          | 53%      | 0.36     | 0.53      | 0.53   | 0.72 |
+| 5 (L2 + Dropout)        | RMSprop   | L2 (λ=0.01)      | 4*     | Yes (Patience=4)         | 3 Conv + 2 Dense     | 0.001          | 48%      | 0.31     | 0.47      | 0.48   | 1.04 |
 
 
-### Model Performance
-| Model                                      | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
-|--------------------------------------------|----------|-----------|--------|----------|---------|
-| Model1 (Default CNN)                       | 0.7904   | 0.83      | 0.82   | 0.82     | 0.91    |
-| Model2 (L2 Regularization)                 | 0.6854   | 0.85      | 0.84   | 0.84     | 0.92    |
-| Model3 (L2 Regularization, Early Stopping) | 0.4579   | 0.86      | 0.85   | 0.85     | 0.93    |
-| Model4 (L1 Regularization, RMSprop)        | 0.4579   | 0.84      | 0.83   | 0.83     | 0.92    |
-| Model5 (L2 Regularization,RMSprop, ES, Dp) | 0.4579   | 0.87      | 0.86   | 0.86     | 0.94    |
+## Error Analysis and Justification of Results 
+### Default CNN (No Optimization)  
+- **Accuracy:** 73%, **Loss:** 1.54  
+- **Issue:** Overfitting—training accuracy reached 100%, but validation plateaued at ~60%.  
+- **Cause:** No regularization or dropout, leading to memorization of noise.  
 
+### L2 Regularization (λ=0.001)  
+- **Accuracy:** 70%, **Loss:** 1.14  
+- **Improvement:** Reduced overfitting; validation loss dropped by 25%.  
+- **Trade-off:** Suppressed model flexibility, worsening precision/recall balance.  
+
+### L2 + Early Stopping  
+- **Accuracy:** 53%, **Loss:** 1.41  
+- **Issue:** Training stopped early (epoch 5), preventing learning.  
+- **Cause:** High L2 (λ=0.01) and premature stopping discarded useful features.  
+
+### L1 Regularization + RMSprop  
+- **Accuracy:** 53%, **Loss:** 0.72  
+- **Issue:** Excessive sparsity—L1 (λ=0.01) removed critical filters.  
+- **Optimizer Impact:** RMSprop struggled with sparse gradients.  
+
+### L2 + Dropout + Early Stopping  
+- **Accuracy:** 48%, **Loss:** 1.04  
+- **Issue:** Over-Dropout (50%) disrupted learning; early stopping (epoch 4) prevented recovery.  
+
+## Key Takeaways: Summary of Optimization Impact  
+- **L2 regularization improves generalization** but requires careful tuning.  
+- **L1 regularization harms small datasets** due to feature loss.  
+- **Overly aggressive early stopping leads to underfitting.**  
+- **Adam optimizer outperformed RMSprop** by handling noisy gradients better.  
+- **50% dropout was too high**—20-30% might be optimal.  
+
+## Recommendations  
+- **Data Augmentation:** Expand the dataset with rotations/flips.  
+- **Transfer Learning:** Use pre-trained models (e.g., ResNet50).  
+- **Hyperparameter Tuning:** Optimize λ (L2), dropout rate (20-30%), and patience.  
+- **Learning Rate Scheduling:** Gradually decrease LR to stabilize training.  
 
 ## Classical Machine Learning Models
 In addition to the CNN models, the best classical machine learning models was implemented:
-
 - **Random Forest:**
 Accuracy: 0.75
 Precision: 0.88
 Recall: 0.64
 F1-Score: 0.74
 
-
-### Key Findings
-- **Best Performing Model**: Model 5 (L2 Regularization, RMSprop optimizer, early stopping, and dropout) achieved the highest ROC-AUC (0.94).
-- **Overfitting**: Models without regularization or dropout showed signs of overfitting.
-- **Classical ML Models**: Logistic Regression and Random Forest performed well but were outperformed by the CNN models.
-
----
 ## Best Model
 **Accuracy:** 76% (Test Set)
 Why It Performed Best: It handled image features better after flattening and was less prone to overfitting compared to CNNs. and Effective with limited data (600 images).
 
-## Link to my Demo Video:
-https://youtu.be/fYw_hd9Avn0
-
-
+---
 ## Installation
 To run this project locally, follow these steps:
 
@@ -112,3 +115,6 @@ To run this project locally, follow these steps:
 - **CNN Challenges:** All CNN variants overfit despite optimizations, likely due to limited training data.
 - **Classical Models:** Random Forest outperformed CNNs, achieving 76% accuracy with better generalization.
 - **Future Work:** Data augmentation, transfer learning (e.g., ResNet50), and larger datasets.
+
+## Link to my Demo Video:
+https://youtu.be/fYw_hd9Avn0
