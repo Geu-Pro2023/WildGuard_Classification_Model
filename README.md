@@ -110,7 +110,7 @@ To run this project locally, follow these steps:
 ```bash
 git clone https://github.com/your-username/wild-animal-classification.git
 cd wild-animal-classification
-
+   ```
 2. **Install dependencies:**
    ```sh
    pip install -r requirements.txt
