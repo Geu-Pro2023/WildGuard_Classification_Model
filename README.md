@@ -47,33 +47,33 @@ The dataset used in this project is publicly available on Kaggle, titled **"90 D
 
 ## **Error Analysis and Justification of Results**  
 
-### **Default CNN (No Optimization)**  
+### **1. Default CNN (No Optimization)**  
 - **Accuracy:** **73%**, **Loss:** **1.54**  
 - **Issue:** Overfitting—training accuracy reached **100%**, but validation plateaued at ~**60%**.  
 - **Cause:** No regularization or dropout, leading to memorization of noise.  
 
-### **L2 Regularization (λ=0.001)**  
+### **2. L2 Regularization (λ=0.001)**  
 - **Accuracy:** **70%**, **Loss:** **1.14**  
 - **Improvement:** Reduced overfitting; validation loss dropped by **25%**.  
 - **Trade-off:** Suppressed model flexibility, worsening precision/recall balance.  
 
-### **L2 + Early Stopping**  
+### **3. L2 + Early Stopping**  
 - **Accuracy:** **53%**, **Loss:** **1.41**  
 - **Issue:** Training stopped early (**epoch 5**), preventing learning.  
 - **Cause:** High L2 (**λ=0.01**) and premature stopping discarded useful features.  
 
-### **L1 Regularization + RMSprop**  
+### **4. L1 Regularization + RMSprop**  
 - **Accuracy:** **53%**, **Loss:** **0.72**  
 - **Issue:** Excessive sparsity—L1 (**λ=0.01**) removed critical filters.  
 - **Optimizer Impact:** RMSprop struggled with sparse gradients.  
 
-### **L2 + Dropout + Early Stopping**  
+### **5. L2 + Dropout + Early Stopping**  
 - **Accuracy:** **48%**, **Loss:** **1.04**  
 - **Issue:** Over-Dropout (**50%**) disrupted learning; early stopping (**epoch 4**) prevented recovery.  
 
 ---
 
-## **Key Takeaways: Summary of Optimization Impact**  
+## **Summary of Optimization Impact**  
 - **L2 regularization reduces overfitting** by penalizing large weights, improving generalization. However, excessive L2 strength (**λ=0.01**) can suppress learning, leading to underperformance.  
 - **L1 regularization harms small datasets** due to feature loss.  
 - **Overly aggressive early stopping leads to underfitting.**  
@@ -85,9 +85,14 @@ The results indicate that classical ML models like **Random Forest** may be more
 
 ---
 
-## **Classical Machine Learning Models**  
-In addition to the CNN models, the best classical machine learning models were implemented:  
-
+## **Classical Machine Learning Model Classical with explicit metricss**  
+In addition to the CNN models, the best classical machine learning models were implemented:
+**Logistic Regression:**  
+- **Accuracy:** **68%**  
+- **Precision:** **0.72**  
+- **Recall:** **0.60**  
+- **F1-Score:** **0.65**
+  
 **Random Forest:**  
 - **Accuracy:** **75%**  
 - **Precision:** **0.88**  
@@ -101,7 +106,14 @@ In addition to the CNN models, the best classical machine learning models were i
   - Less prone to overfitting compared to CNNs.  
   - Effective with **limited data (600 images)**.  
 
----
+
+## **ML Algorithms vs. Neural Networks**  
+- **Why Classical ML Outperformed CNNs**:  
+  1. **Limited Data**: CNNs overfit despite regularization, while classical ML generalized better.  
+  2. **Feature Simplicity**: Random Forest handled flattened pixel features effectively.  
+  3. **Optimization Challenges**: CNNs required careful tuning (e.g., dropout, regularization strength).
+ 
+--- 
 
 ## **Installation**  
 To run this project locally, follow these steps:  
